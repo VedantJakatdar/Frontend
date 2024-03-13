@@ -1,6 +1,15 @@
  //Updating an Employee
 document.getElementById('update-btn').addEventListener('click', async () => {
     const employeeData = getFormData();
+    if (employeeData.empId === "" || employeeData.firstName === "" || employeeData.lastName === "" || employeeData.email === "") {
+      alert("All fields must be filled out");
+      return false;
+    }
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(employeeData.emailId)) {
+        alert("Invalid email format");
+        return false;
+    }
     const employeeId = document.getElementById('employee-id').value;
     try {
       const response = await fetch(`http://localhost:8080/employees/${employeeId}`, {
@@ -31,3 +40,8 @@ document.getElementById('update-btn').addEventListener('click', async () => {
       emailId: email,
     };
   }
+  
+
+  
+
+  

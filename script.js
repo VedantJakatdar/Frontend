@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           <td>${employee.lastName}</td>
           <td>${employee.emailId}</td>
           <td>
-            <button onclick="editEmployee(${employee.empId})">Update</button>
+            <button onclick="editEmployee('${employee.empId}','${employee.firstName}','${employee.lastName}','${employee.emailId}')">Update</button>
             <button onclick="deleteEmployee(${employee.empId})">Delete</button>
           </td>
         `;
@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   
   //Redirecting to the updateEmployee page
-  function editEmployee(empId) {
-    window.location.href = 'updateEmployee.html?id=' + empId; 
-  }
+  function editEmployee(empId, firstName, lastName, email) {
+    // window.location.href = 'updateEmployee.html?id=' + empId;
+    window.location.href = "updateEmployee.html?empId=" + encodeURIComponent(empId) + "&firstName=" + encodeURIComponent(firstName) + "&lastName=" + encodeURIComponent(lastName) + "&email=" + encodeURIComponent(email);
+}
 
 
   //deleting an employee
@@ -50,3 +51,4 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   }
+
